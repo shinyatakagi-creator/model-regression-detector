@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     openai_api_key: Optional[str] = None
     openai_model: str = "gpt-4o-mini"
 
-    prompt_version: str = "v1"
+    prompt_version: str = "v2"
 
     db_path: str = "data/runs.db"
     golden_dataset_path: str = "data/golden_dataset.json"
