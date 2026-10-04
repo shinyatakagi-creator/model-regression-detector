@@ -162,7 +162,7 @@ testing, which is why it's the default.
 ```bash
 # in .env
 LLM_PROVIDER=openai
-OPENAI_API_KEY=sk-...
+OPENAI_API_KEY=<your key>
 ```
 
 Re-run step 3 and 4 for real: set a baseline against the actual model, then
