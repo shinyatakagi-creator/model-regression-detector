@@ -1,5 +1,9 @@
 # Model Regression Detection System — Implementation & Testing Guide
 
+![Regression report from a failed PR check](docs/regression-report.png)
+
+*CI report for a PR that switched the default prompt to the trimmed `v2`: format validity on `gpt-4o-mini` fell from 100% to 0% under strict JSON parsing, and the check failed.*
+
 A CI/CD-style pipeline that runs any LLM feature against a fixed "golden
 dataset" whenever the prompt or model changes, scores it, compares the score
 to a stored baseline, and fails the build (and pings Slack) if quality drops.
