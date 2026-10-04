@@ -1,0 +1,52 @@
+name: LLM regression check
+
+on:
+  pull_request:
+    paths:
+      - "app/**"
+      - "scripts/**"
+      - "data/golden_dataset.json"
+      - "requirements.txt"
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    env:
+      LLM_PROVIDER: openai
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      # Shared by both steps below, outside either checkout.
+      DB_PATH: ${{ github.workspace }}/runs.db
+    steps:
+      # The PR's code (candidate) and the target branch's code (baseline)
+      # are checked out side by side, so the baseline is always current.
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: baseline
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r candidate/requirements.txt
+
+      - name: Score the base branch and save it as the baseline
+        working-directory: baseline
+        run: python scripts/run_eval.py --set-baseline
+
+      - name: Score the PR and compare to the baseline
+        working-directory: candidate
+        run: python scripts/run_eval.py --compare-baseline
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-report
+          path: candidate/reports/latest.html

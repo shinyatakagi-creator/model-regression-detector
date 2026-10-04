@@ -1,0 +1,14 @@
+[
+  {"id": "e01", "email": "I was charged twice for my subscription this month, please refund the duplicate charge.", "expected_category": "billing"},
+  {"id": "e02", "email": "My invoice for August shows the wrong amount, can you correct it?", "expected_category": "billing"},
+  {"id": "e03", "email": "Can I get a refund for the annual plan I just purchased by mistake?", "expected_category": "billing"},
+  {"id": "e04", "email": "The dashboard crashes with a 500 error every time I try to export a report.", "expected_category": "technical"},
+  {"id": "e05", "email": "I'm getting a timeout error when uploading files larger than 10MB.", "expected_category": "technical"},
+  {"id": "e06", "email": "The app throws an exception and closes whenever I open the settings page.", "expected_category": "technical"},
+  {"id": "e07", "email": "I'm locked out of my account after enabling two-factor authentication.", "expected_category": "account"},
+  {"id": "e08", "email": "I forgot my password and the reset email never arrives.", "expected_category": "account"},
+  {"id": "e09", "email": "Can you help me log in? It says my account is locked.", "expected_category": "account"},
+  {"id": "e10", "email": "Just wanted to say the new dashboard redesign looks great, nice work!", "expected_category": "general"},
+  {"id": "e11", "email": "Do you have a public roadmap I can check for upcoming features?", "expected_category": "general"},
+  {"id": "e12", "email": "What are your support hours on weekends?", "expected_category": "general"}
+]
