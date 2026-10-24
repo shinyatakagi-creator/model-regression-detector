@@ -1,4 +1,4 @@
-# Model Regression Detection System — Implementation & Testing Guide
+# Model Regression Detector
 
 ![Regression report from a failed PR check](docs/regression-report.png)
 
