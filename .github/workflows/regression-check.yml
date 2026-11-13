@@ -8,6 +8,10 @@ on:
       - "data/golden_dataset.json"
       - "requirements.txt"
 
+# The job only reads code and uploads an artifact; keep the default token read-only.
+permissions:
+  contents: read
+
 jobs:
   eval:
     runs-on: ubuntu-latest
@@ -23,11 +27,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: candidate
+          persist-credentials: false
 
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           path: baseline
+          persist-credentials: false
 
       - uses: actions/setup-python@v5
         with:
